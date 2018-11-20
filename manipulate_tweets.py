@@ -34,7 +34,7 @@ def main():
                       access_token_key="",
                       access_token_secret="")
 
-    manipulate(action, "unlike")
+    manipulate(api, "unlike")
 
 
 if __name__ == "__main__":
