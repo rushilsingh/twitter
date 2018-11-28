@@ -10,6 +10,6 @@ clean:
 	rm -rf env
 
 prepare-venv:
-	virtualenv -p /usr/bin/python2.7 $(VENV) --no-pip
+	virtualenv -p /usr/bin/python3 $(VENV) --no-pip
 	$(VENV)/bin/easy_install pip==18.0
 	$(PIP) install -r requirements.txt
