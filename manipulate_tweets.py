@@ -11,7 +11,6 @@ def manipulate(api, action):
     elif action == 'delete':
         tweets = api.GetReplies()
         tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0]
-        print(tweet_ids)
 
     try:
             if action =="unlike":
