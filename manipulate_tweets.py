@@ -5,7 +5,7 @@ protected_likes = ["1063738463776894976"]
 protected_tweets = []
 protected = []
 
-def manipulate(api, action):
+def manipulate(api, action, option):
     if action=="unlike":
         tweets = api.GetFavorites()
     elif action == 'delete':
@@ -46,7 +46,9 @@ def main():
                       access_token_key="",
                       access_token_secret="")
 
-    manipulate(api, argv[1])
+    args = argv[1:] 
+    args = tuple(args)
+    manipulate(api, *args)
 
 
 if __name__ == "__main__":
