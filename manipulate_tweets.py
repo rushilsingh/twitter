@@ -2,7 +2,7 @@ import twitter
 import time
 
 
-def manipulate(api, action, option):
+def manipulate(api, action):
     users = api.GetFollowers(screen_name="")
     users = [user.screen_name for user in users]
     if action=="unlike":
