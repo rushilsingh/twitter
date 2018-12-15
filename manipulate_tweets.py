@@ -38,6 +38,7 @@ def destroy(api, action, *args):
         [destroy_func(status_id=tweet_id) for tweet_id in tweet_ids]
         count = len(tweet_ids)
     except Exception as e:
+        count = "unknown"
         print(e)
     time.sleep(0.5)
 
