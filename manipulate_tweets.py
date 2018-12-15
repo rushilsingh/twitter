@@ -13,7 +13,7 @@ except Exception as e:
 
 
 def manipulate(api, action):
-    users = api.GetFollowers(screen_name=SCREEN_NAME)
+    users = api.GetFollowers(screen_name=CREDENTIALS["screen_name"])
     users = [user.screen_name for user in users]
     if action=="unlike":
         destroy = api.DestroyFavorite
