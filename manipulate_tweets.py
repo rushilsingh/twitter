@@ -12,6 +12,9 @@ def manipulate(api, action):
     elif action == 'delete':
         destroy = api.DestroyStatus
         tweets = api.GetReplies(count=1000)
+        retweets = api.GetUserRetweets(count=1000)
+        tweets.extend(retweets)
+        tweets = list(set(tweets))
         tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0 and tweet.in_reply_to_screen_name not in users]
 
     try:
