@@ -1,9 +1,19 @@
 import twitter
 import time
+import json
+
+
+try:
+    with open("credentials.json") as f:
+        CREDENTIALS = json.load(f)
+except Exception as e:
+    print(e)
+    print("Unable to import credentials")
+    CREDENTIALS = {}
 
 
 def manipulate(api, action):
-    users = api.GetFollowers(screen_name="")
+    users = api.GetFollowers(screen_name=SCREEN_NAME)
     users = [user.screen_name for user in users]
     if action=="unlike":
         destroy = api.DestroyFavorite
@@ -31,12 +41,12 @@ def main():
 
     from sys import argv
 
-    api = twitter.Api(consumer_key="",
-                      consumer_secret="",
-                      access_token_key="",
-                      access_token_secret="")
+    api = twitter.Api(consumer_key=CREDENTIALS["consumer_key"],
+                      consumer_secret=CREDENTIALS["consumer_secret"],
+                      access_token_key=CREDENTIALS["accesss_token_key"],
+                      access_token_secret=CREDENTIALS["access_token_secret"]
 
-    args = argv[1:] 
+    args = argv[1:]
     args = tuple(args)
     manipulate(api, *args)
 
