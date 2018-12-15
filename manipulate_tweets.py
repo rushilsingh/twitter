@@ -6,22 +6,20 @@ def manipulate(api, action):
     users = api.GetFollowers(screen_name="")
     users = [user.screen_name for user in users]
     if action=="unlike":
+        destroy = api.DestroyFavorite
         tweets = api.GetFavorites(count=1000)
         tweet_ids = [str(tweet.id) for tweet in tweets if tweet.user.screen_name not in users]
     elif action == 'delete':
+        destroy = api.DestroyStatus
         tweets = api.GetReplies(count=1000)
         tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0 and tweet.in_reply_to_screen_name not in users]
 
     try:
         count = 0
-        if action == "unlike":
-            [api.DestroyFavorite(status_id=tweet_id) for tweet_id in tweet_ids]
-            count = len(tweet_ids)
-        elif action == "delete":
-            [api.DestroyStatus(status_id=tweet_id) for tweet_id in tweet_ids]
-            count = len(tweet_ids)
+        [destroy(status_id=tweet_id) for tweet_id in tweet_ids]
+        count = len(tweet_ids)
     except Exception as e:
-        print(e.message)
+        print(e)
     time.sleep(0.5)
 
     print("Number of tweets %sd: %s\n" % (action, count))
