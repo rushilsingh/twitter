@@ -46,15 +46,19 @@ def destroy(api, action, *args):
 def main():
 
     from sys import argv
-
-    api = twitter.Api(consumer_key=CREDENTIALS["consumer_key"],
+    if CREDENTIALS:
+        try:
+            api = twitter.Api(consumer_key=CREDENTIALS["consumer_key"],
                       consumer_secret=CREDENTIALS["consumer_secret"],
                       access_token_key=CREDENTIALS["accesss_token_key"],
                       access_token_secret=CREDENTIALS["access_token_secret"]
-
-    args = argv[1:]
-    args = tuple(args)
-    manipulate(api, *args)
+            args = argv[1:]
+            args = tuple(args)
+            manipulate(api, *args)
+        except Exception as e:
+            print(e)
+    else:
+        pass
 
 
 if __name__ == "__main__":
