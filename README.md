@@ -13,4 +13,4 @@ The current python script is used for the following purposes:
 2. To unlike all tweets that are not tweeted by one of your followers
 
 Note:
-You have to insert your screen name, and various api keys at the appropriate places.
+You have to insert your screen name, and various api keys in the file credentials.json. The current values are just examples.
