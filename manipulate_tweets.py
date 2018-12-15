@@ -12,24 +12,30 @@ except Exception as e:
     CREDENTIALS = {}
 
 
-def manipulate(api, action):
+def get_tweet_ids(api, action, *args):
+
     users = api.GetFollowers(screen_name=CREDENTIALS["screen_name"])
     users = [user.screen_name for user in users]
     if action=="unlike":
-        destroy = api.DestroyFavorite
+        destroy_func = api.DestroyFavorite
         tweets = api.GetFavorites(count=1000)
         tweet_ids = [str(tweet.id) for tweet in tweets if tweet.user.screen_name not in users]
     elif action == 'delete':
-        destroy = api.DestroyStatus
+        destroy_func = api.DestroyStatus
         tweets = api.GetReplies(count=1000)
         retweets = api.GetUserRetweets(count=1000)
         tweets.extend(retweets)
         tweets = list(set(tweets))
         tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0 and tweet.in_reply_to_screen_name not in users]
 
+        return tweet_ids, destroy_func
+
+def destroy(api, action, *args):
+
+    tweet_ids, destroy_func  = get_tweet_ids(api, action, *args)
     try:
         count = 0
-        [destroy(status_id=tweet_id) for tweet_id in tweet_ids]
+        [destroy_func(status_id=tweet_id) for tweet_id in tweet_ids]
         count = len(tweet_ids)
     except Exception as e:
         print(e)
