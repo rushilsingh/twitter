@@ -28,7 +28,7 @@ def get_tweet_ids(api, action, *args):
         tweets = list(set(tweets))
         tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0 and tweet.in_reply_to_screen_name not in users]
 
-        return tweet_ids, destroy_func
+    return tweet_ids, destroy_func
 
 def destroy(api, action, *args):
 
@@ -51,11 +51,11 @@ def main():
         try:
             api = twitter.Api(consumer_key=CREDENTIALS["consumer_key"],
                       consumer_secret=CREDENTIALS["consumer_secret"],
-                      access_token_key=CREDENTIALS["accesss_token_key"],
-                      access_token_secret=CREDENTIALS["access_token_secret"]
+                      access_token_key=CREDENTIALS["access_token_key"],
+                      access_token_secret=CREDENTIALS["access_token_secret"])
             args = argv[1:]
             args = tuple(args)
-            manipulate(api, *args)
+            destroy(api, *args)
         except Exception as e:
             print(e)
     else:
