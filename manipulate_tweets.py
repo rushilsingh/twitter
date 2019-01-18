@@ -26,7 +26,7 @@ def get_tweet_ids(api, action, *args):
         retweets = api.GetUserRetweets(count=1000)
         tweets.extend(retweets)
         tweets = list(set(tweets))
-        tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0 and tweet.retweet_count == 0 and tweet.in_reply_to_screen_name not in users]
+        tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0 and (tweet.retweet_count == 0 or tweet.in_reply_to_screen_name not in users)]
 
     return tweet_ids, destroy_func
 

@@ -9,7 +9,8 @@ python manipulate_tweets.py unlike
 
 
 The current python script is used for the following purposes:
-1. To delete all tweets that have not been liked, have not been retweeted and are not in response to one of your followers.
+
+1. To delete all tweets that have not been liked or retweeted. Unretweets all tweets that are not authored by a follower.
 2. To unlike all tweets that are not tweeted by one of your followers
 
 Note:
