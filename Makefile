@@ -11,5 +11,5 @@ clean:
 
 prepare-venv:
 	virtualenv -p /usr/bin/python3.5 $(VENV) --no-pip
-	$(VENV)/bin/easy_install pip==18.0
+	$(VENV)/bin/easy_install pip==19.1
 	$(PIP) install -r requirements.txt
