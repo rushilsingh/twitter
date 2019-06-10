@@ -19,15 +19,15 @@ def get_tweet_ids(api, action, *args):
     if action=="unlike":
         destroy_func = api.DestroyFavorite
         tweets = api.GetFavorites(count=1000)
-        tweet_ids = [str(tweet.id) for tweet in tweets if tweet.user.screen_name not in users]
+        tweet_ids = [str(tweet.id) for tweet in tweets] 
     elif action == 'delete':
         destroy_func = api.DestroyStatus
         tweets = api.GetReplies(count=1000)
         retweets = api.GetUserRetweets(count=1000)
         tweets.extend(retweets)
         tweets = list(set(tweets))
-        tweet_ids = [str(tweet.id) for tweet in tweets if tweet.favorite_count == 0 and (tweet.retweet_count == 0 or tweet.in_reply_to_screen_name not in users)]
-
+        tweet_ids = [str(tweet.id) for tweet in tweets] 
+        
     return tweet_ids, destroy_func
 
 def destroy(api, action, *args):
