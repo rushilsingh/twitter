@@ -1,4 +1,4 @@
-VENV ?= env
+VENV ?= venv
 PIP ?= $(VENV)/bin/pip
 
 help:
@@ -7,9 +7,9 @@ help:
 	@echo "  prepare-venv install virtualenv and requiements into directory $(VENV)"
 
 clean:
-	rm -rf env
+	rm -rf venv
 
 prepare-venv:
-	virtualenv -p /usr/bin/python3.6 $(VENV) --no-pip
-	$(VENV)/bin/easy_install pip==19.1
+	virtualenv --python python3.6 $(VENV) --no-pip
+	$(VENV)/bin/easy_install pip==18.0
 	$(PIP) install -r requirements.txt
