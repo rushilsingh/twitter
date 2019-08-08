@@ -28,12 +28,12 @@ config = {
 class HomePage(object):
     @cherrypy.expose
     def index(self):
-         output = """
-        <form  method="post" name="credentials" action="process">
-            <h1>credentials</h1>
-            <input type="text" name="action">
-            <input type="submit">
-        </form>
+        output = """
+            <form  method="post" name="credentials" action="process">
+                <h1>credentials</h1>
+                <input type="text" name="action">
+                <input type="submit">
+            </form>
             """
         tmpl = env.get_template('index.html')
         return tmpl.render(data=output)
