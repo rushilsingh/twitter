@@ -1,6 +1,5 @@
 import re
 import cherrypy
-from bhavcopy import BhavCopy
 import redis
 import os
 from jinja2 import Environment, FileSystemLoader
