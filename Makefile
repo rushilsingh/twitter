@@ -10,6 +10,5 @@ clean:
 	rm -rf venv
 
 prepare-venv:
-	virtualenv --python python3.6 $(VENV) --no-pip
-	$(VENV)/bin/easy_install pip==18.0
+	virtualenv --python python3.6 $(VENV)
 	$(PIP) install -r requirements.txt
